@@ -1,32 +1,31 @@
 import React from "react";
-import logo from "../assets/logo.png";
 import styled from "styled-components";
-import PersonIcon from "@material-ui/icons/Person";
 import MovieIcon from "@material-ui/icons/Movie";
 import ContactSupportIcon from "@material-ui/icons/ContactSupport";
 import { Link } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
+import InfoIcon from "@material-ui/icons/Info";
 
 export default function Header() {
 	return (
 		<Container>
 			<LogoContainer>
-				<Logo src={logo} />
+				<Logo>M</Logo>
 			</LogoContainer>
 			<NavBarContainer>
 				<Tooltip title="Movies">
-					<NavLink to="/">
+					<NavLink to="/movies">
 						<MovieIcon style={{ fontSize: 30 }} />{" "}
 					</NavLink>
 				</Tooltip>
-				<Tooltip title="Help & Support">
-					<NavLink to="/">
+				<Tooltip title="Contact">
+					<NavLink to="/contact-us">
 						<ContactSupportIcon style={{ fontSize: 30 }} />{" "}
 					</NavLink>
 				</Tooltip>
-				<Tooltip title="Profile">
-					<NavLink to="/">
-						<PersonIcon style={{ fontSize: 30 }} />
+				<Tooltip title="About Us">
+					<NavLink to="/about-us">
+						<InfoIcon style={{ fontSize: 30 }} />
 					</NavLink>
 				</Tooltip>
 			</NavBarContainer>
@@ -55,9 +54,10 @@ const LogoContainer = styled.div`
 	margin-bottom: 60vh;
 `;
 
-const Logo = styled.img`
-	width: 90px;
-	height: 80px;
+const Logo = styled.span`
+	font-size: 60px;
+	color: #fff;
+	font-family: "Viaoda Libre";
 `;
 
 const NavBarContainer = styled.div`

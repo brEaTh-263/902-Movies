@@ -1,16 +1,16 @@
 import { Switch, Route } from "react-router";
-import AuthPage from "../containers/AuthPage";
-import HomePage from "../containers/MoviePage";
-import InitialPage from "../containers/InitialPage";
+import MoviePage from "../containers/MoviePage";
 import LandingPage from "../containers/LandingPage";
+import AboutPage from "../containers/AboutPage";
+import ContactUsPage from "../containers/ContactUsPage";
 
 const Routes = () => {
 	return (
 		<Switch>
-			<Route exact path="/" component={InitialPage} />
-			<Route exact path="/sign-in" component={AuthPage} />
-			<Route exact path="/home" component={LandingPage} />
-			<Route exact path="/movies/:id" component={HomePage} />
+			<Route exact path="/" component={LandingPage} />
+			<Route exact path="/movies/:id" component={MoviePage} />
+			<Route exact path="/about-us" component={AboutPage} />
+			<Route exact path="/contact-us" component={ContactUsPage} />
 		</Switch>
 	);
 };

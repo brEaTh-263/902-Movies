@@ -12,7 +12,6 @@ import MovieDetails from "../components/MovieDetails";
 import BookSeatsPage from "./BookSeatsPage";
 import { useHistory } from "react-router";
 import ShowTrailer from "../components/ShowTrailer";
-
 export default function HomePage(props) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [trailer, setTrailer] = useState("");
@@ -141,7 +140,9 @@ export default function HomePage(props) {
 						<SubTitle>{movie?.tagline}</SubTitle>
 						<Title>{movie?.title}</Title>
 						<StyledButton
-							onClick={() => setIsBookingSeats(true)}
+							onClick={() => {
+								setIsBookingSeats(true);
+							}}
 							style={{ display: !isBookingSeats ? "inline-block" : "none" }}
 							variant="outlined"
 						>

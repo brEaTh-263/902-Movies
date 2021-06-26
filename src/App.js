@@ -8,7 +8,6 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import MoviesReducer from "./store/reducer/Movies";
-import AuthReducer from "./store/reducer/Auth";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const App = () => {
@@ -19,7 +18,6 @@ const App = () => {
 
 	const rootReducer = combineReducers({
 		Movies: MoviesReducer,
-		Auth: AuthReducer,
 	});
 
 	const persistedReducer = persistReducer(persistConfig, rootReducer);
