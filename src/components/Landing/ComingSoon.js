@@ -5,12 +5,14 @@ import { useSelector } from "react-redux";
 import { motion, useAnimation } from "framer-motion";
 import { Button } from "@material-ui/core";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+import { useHistory } from "react-router";
 
 export default function ComingSoon() {
 	const { inView, ref } = useInView();
 	const movies = useSelector((state) => state.Movies);
 	const { upcomingMovies } = movies;
 	const controls = useAnimation();
+	const history = useHistory();
 	const variants = {
 		hidden: {
 			opacity: 0,
@@ -48,7 +50,10 @@ export default function ComingSoon() {
 				<TrailerButton startIcon={<PlayCircleFilledIcon />} variant="contained">
 					Watch Trailer
 				</TrailerButton>
-				<ComingSoonButton variant="outlined">
+				<ComingSoonButton
+					variant="outlined"
+					onClick={() => history.push("/movies", { comingSoon: true })}
+				>
 					View All Coming Soon
 				</ComingSoonButton>
 			</DetailsContainer>

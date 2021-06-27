@@ -16,7 +16,7 @@ export default function Header() {
 			</LogoContainer>
 			<NavBarContainer>
 				<Tooltip title="Movies">
-					<NavLink to="/now-showing">
+					<NavLink to="/movies">
 						<MovieIcon style={{ fontSize: 30 }} />{" "}
 					</NavLink>
 				</Tooltip>

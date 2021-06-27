@@ -75,7 +75,7 @@ export default function MovieItem({ movie, show }) {
 				className={classes.button}
 				variant="outlined"
 				onClick={() => {
-					history.push(`/movies/${movie.id}`);
+					history.push(`movie/${movie.id}`);
 				}}
 			>
 				View

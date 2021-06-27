@@ -1,17 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
 import MovieItem from "../components/MovieItem";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-export default function MoviesPage() {
-	const { state } = useParams();
+export default function MoviesPage(props) {
+	const comingSoon = props.location.state;
 	const AllMovies = useSelector((state) => state.Movies);
-	const Movies =
-		state === "now-showing"
-			? AllMovies.nowShowingMovies
-			: AllMovies.upcomingMovies;
+	const Movies = !comingSoon
+		? AllMovies.nowShowingMovies
+		: AllMovies.upcomingMovies;
 	const Moviehandler = () => {
 		return Movies.map((movie) => {
 			return <MovieItem key={movie.id} movie={movie} show={false} />;
@@ -21,9 +19,10 @@ export default function MoviesPage() {
 		<Container>
 			<Header />
 			<Background>
-				<RedTag>now playing</RedTag>
+				<RedTag>{comingSoon ? "coming soon" : "now playing"}</RedTag>
 				<Type>
-					<BoldType>Now</BoldType> Playing
+					<BoldType>{comingSoon ? "Coming" : "Now"}</BoldType>
+					{comingSoon ? " Soon" : " Playing"}
 				</Type>
 			</Background>
 			<SubContainer>

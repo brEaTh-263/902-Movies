@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MovieIcon from "@material-ui/icons/Movie";
 import { Button, makeStyles } from "@material-ui/core";
 import genres from "../../genres";
+import { useHistory } from "react-router";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -22,6 +23,7 @@ export default function AllShowTimes() {
 	const classes = useStyles();
 	const { inView, ref } = useInView();
 	const controls = useAnimation();
+	const history = useHistory();
 	const variants = {
 		hidden: {
 			opacity: 0,
@@ -89,6 +91,7 @@ export default function AllShowTimes() {
 					{findGenres(nowShowingMovies[4]?.genre_ids)}
 					<StyledButton
 						variant="contained"
+						onClick={() => history.push("/movies")}
 						className={classes.blueButton}
 						startIcon={<MovieIcon />}
 					>
