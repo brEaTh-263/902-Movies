@@ -11,8 +11,8 @@ import {
 	ListItemText,
 	List,
 } from "@material-ui/core";
-import Seats from "../assets/seats.png";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
 import * as movieActions from "../store/action/Movies";
 import SearchIcon from "@material-ui/icons/Search";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -22,6 +22,7 @@ import ComingSoon from "../components/Landing/ComingSoon";
 import AllShowTimes from "../components/Landing/AllShowTimes";
 import Promotions from "../components/Landing/Promotions";
 import NavLayer from "../components/NavLayer";
+import Footer from "../components/Footer";
 const useStyles = makeStyles((theme) => ({
 	input: {
 		marginLeft: theme.spacing(1),
@@ -47,15 +48,18 @@ export default function LandingPage(props) {
 	const [queryResults, setQueryResults] = useState([]);
 	const [searchMovie, setSearchMovie] = useState("");
 	const [showQuery, setShowQuery] = useState(false);
-	const movies = useSelector((state) => state.Movies);
-	const { nowShowingMovies } = movies;
 
 	useEffect(() => {
 		const getMovieDetails = async () => {
-			setIsLoading(true);
-			await dispatch(movieActions.getUpcoming());
-			await dispatch(movieActions.getNowShowing());
-			setIsLoading(false);
+			try {
+				setIsLoading(true);
+				await dispatch(movieActions.getUpcoming());
+				await dispatch(movieActions.getNowShowing());
+				setIsLoading(false);
+			} catch (error) {
+				setIsLoading(false);
+				alert("Something went wrong,please try again!");
+			}
 		};
 		getMovieDetails();
 	}, [dispatch]);
@@ -150,43 +154,8 @@ export default function LandingPage(props) {
 					<AllShowTimes />
 					<EmptySpace />
 					<Promotions />
-					<BackgroundPic></BackgroundPic>
-					<FooterContainer>
-						<RedTag
-							style={{
-								margin: "2rem",
-								width: "14rem",
-							}}
-						>
-							Experience Movies like no other
-						</RedTag>
 
-						<Column>
-							<GreyTag>Movies</GreyTag>
-							<Text style={{ fontWeight: "normal" }}>
-								{nowShowingMovies[0]?.title}
-							</Text>
-							<Text style={{ fontWeight: "normal" }}>
-								{nowShowingMovies[1]?.title}
-							</Text>
-							<Text style={{ fontWeight: "normal" }}>
-								{nowShowingMovies[2]?.title}
-							</Text>
-							<Text style={{ fontWeight: "normal" }}>
-								{nowShowingMovies[3]?.title}
-							</Text>
-							<Text style={{ fontWeight: "normal" }}>
-								{nowShowingMovies[4]?.title}
-							</Text>
-						</Column>
-						<Column>
-							<GreyTag>Info</GreyTag>
-							<Text style={{ fontWeight: "normal" }}>
-								chhapariakeshav@gmail.com
-							</Text>
-							<Text style={{ fontWeight: "normal" }}>(+91)9794499644</Text>
-						</Column>
-					</FooterContainer>
+					<Footer />
 				</SubContainer>
 			</Container>
 		</NavLayer>
@@ -209,12 +178,6 @@ const SubContainer = styled.div`
 	@media (max-width: 720px) {
 		margin-left: 0;
 	}
-`;
-
-const FooterContainer = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
 `;
 
 const SearchBarContainer = styled.div`
@@ -260,71 +223,6 @@ const StyledList = styled(List)`
 	}
 `;
 
-const Column = styled.div`
-	z-index: 2;
-	margin: 2rem;
-	@media (max-width: 585px) {
-		margin: 2rem 1rem;
-	}
-	@media (max-width: 480px) {
-		margin: 2rem 0.7rem;
-		display: none;
-	}
-`;
-
 const EmptySpace = styled.div`
 	height: 10rem;
-`;
-
-const Text = styled.p`
-	color: #fff;
-	margin: 5px 0;
-	font-size: 0.8rem;
-	font-weight: lighter;
-	word-wrap: break-word;
-	width: 100%;
-	@media (max-width: 585px) {
-		font-size: 0.6rem;
-	}
-`;
-
-const BackgroundPic = styled.div`
-	background-image: linear-gradient(
-			to bottom,
-			#000,
-			rgba(256, 256, 256, 0),
-			#000
-		),
-		url(${Seats});
-	width: 100%;
-	position: absolute;
-	height: 50vh;
-	background-size: cover;
-	background-blend-mode: hard-light;
-	filter: opacity(25%);
-	background-position: bottom;
-	transform: translateX(-14vw);
-	z-index: 1;
-	bottom: 0;
-	@media (max-width: 720px) {
-		transform: none;
-		left: 0;
-	}
-`;
-
-const RedTag = styled.p`
-	font-weight: bolder;
-	color: red;
-	text-transform: uppercase;
-	padding: 10px 0;
-	letter-spacing: 3px;
-	margin: 0;
-`;
-
-const GreyTag = styled(RedTag)`
-	color: #6f6d6c;
-	font-size: 0.8rem;
-	@media (max-width: 585px) {
-		font-size: 0.6rem;
-	}
 `;

@@ -10,11 +10,13 @@ export default function Header() {
 	return (
 		<Container>
 			<LogoContainer>
-				<Logo>M</Logo>
+				<NavLink to="/">
+					<Logo>M</Logo>
+				</NavLink>
 			</LogoContainer>
 			<NavBarContainer>
 				<Tooltip title="Movies">
-					<NavLink to="/movies">
+					<NavLink to="/now-showing">
 						<MovieIcon style={{ fontSize: 30 }} />{" "}
 					</NavLink>
 				</Tooltip>
@@ -41,6 +43,7 @@ const Container = styled.div`
 	height: 100%;
 	box-sizing: border-box;
 	width: 10vw;
+	z-index: 1000;
 	flex-direction: column;
 	align-content: center;
 
@@ -68,6 +71,7 @@ const NavBarContainer = styled.div`
 `;
 const NavLink = styled(Link)`
 	outline: none;
+	text-decoration: none;
 	color: #fff;
 	padding: 15px 20px;
 	opacity: 0.7;

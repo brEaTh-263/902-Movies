@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 		letterSpacing: 1,
 	},
 }));
-export default function MovieItem({ movie }) {
+export default function MovieItem({ movie, show }) {
 	const classes = useStyles();
 	const releaseDate = moment(movie.release_date).format("LL");
 	const [showTrailer, setShowTrailer] = useState(false);
@@ -46,14 +46,14 @@ export default function MovieItem({ movie }) {
 
 	return (
 		<MoviesContainer
-			whileHover={{ scale: 1.2 }}
+			whileHover={{ scale: show ? 1.2 : 1 }}
 			onHoverStart={() => setShowTrailer(true)}
 			onHoverEnd={() => {
 				setShowTrailer(false);
 				setTrailer("");
 			}}
 		>
-			{showTrailer && (
+			{show && showTrailer && (
 				<Video
 					title="Trailer"
 					allowFullScreen={true}
@@ -61,13 +61,13 @@ export default function MovieItem({ movie }) {
 					frameBorder="0"
 				></Video>
 			)}
-			{/* {!showTrailer && ( */}
 
-			{!showTrailer && (
+			{(!showTrailer || !show) && (
 				<Poster
 					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
 				></Poster>
 			)}
+
 			<Name>{movie.title}</Name>
 			<Text>Imdb Rating {movie.vote_average}</Text>
 			<Text>Released {releaseDate}</Text>
@@ -88,7 +88,7 @@ const MoviesContainer = styled(motion.div)`
 	width: 260px;
 	overflow: visible;
 	height: 400px;
-	margin: 20px 45px 20px 0px;
+	margin: 20px 45px 80px 0px;
 	display: inline-block;
 	background: #000;
 	@media (max-width: 1080px) {
@@ -121,6 +121,7 @@ const Name = styled.p`
 	margin: 5px 0;
 	width: 260px;
 	overflow: hidden;
+	white-space: nowrap;
 	text-overflow: ellipsis;
 	@media (max-width: 480px) {
 		letter-spacing: 1px;
@@ -151,3 +152,7 @@ const Video = styled.iframe`
 		height: 250px;
 	}
 `;
+
+MovieItem.defaultProps = {
+	show: true,
+};
