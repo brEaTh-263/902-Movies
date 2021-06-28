@@ -27,8 +27,8 @@ export default function MoviesPage(props) {
 			</Background>
 			<SubContainer>
 				<NowShowingContainer>{Moviehandler()}</NowShowingContainer>
-				<Footer />
 			</SubContainer>
+			<Footer />
 		</Container>
 	);
 }

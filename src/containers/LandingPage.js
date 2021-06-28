@@ -154,9 +154,8 @@ export default function LandingPage(props) {
 					<AllShowTimes />
 					<EmptySpace />
 					<Promotions />
-
-					<Footer />
 				</SubContainer>
+				<Footer />
 			</Container>
 		</NavLayer>
 	);

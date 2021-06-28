@@ -8,6 +8,7 @@ import {
 import PersonIcon from "@material-ui/icons/Person";
 import MovieIcon from "@material-ui/icons/Movie";
 import ContactSupportIcon from "@material-ui/icons/ContactSupport";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
 	root: {
@@ -29,9 +30,11 @@ const useStyles = makeStyles({
 
 export default function NavLayer(props) {
 	const classes = useStyles();
+	const history = useHistory();
 	const [value, setValue] = React.useState("recents");
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
+		history.push(newValue);
 	};
 	const matches = useMediaQuery("(max-width:720px)");
 
@@ -52,14 +55,14 @@ export default function NavLayer(props) {
 						icon={<MovieIcon />}
 					/>
 					<BottomNavigationAction
-						label="Contact & Support"
-						value="favorites"
+						label="Contact Us"
+						value="contact-us"
 						className={classes.tab}
 						icon={<ContactSupportIcon />}
 					/>
 					<BottomNavigationAction
-						label="Profile"
-						value="nearby"
+						label="About"
+						value="about-us"
 						className={classes.tab}
 						icon={<PersonIcon />}
 					/>

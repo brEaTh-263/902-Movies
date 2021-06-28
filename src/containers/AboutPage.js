@@ -7,14 +7,14 @@ export default function AboutPage(props) {
 		<Container>
 			<Header />
 			<Background>
-				<RedTag>about us</RedTag>
+				<RedTag>our theatre</RedTag>
 				<Type style={{ textTransform: "uppercase" }}>
 					<BoldType>about</BoldType>us
 				</Type>
 			</Background>
 			<SubContainer>
 				<PerksContainer>
-					<Column style={{ width: "25vw" }}>
+					<Column>
 						<BlueTag>About Us</BlueTag>
 						<Type>
 							All the
@@ -26,16 +26,7 @@ export default function AboutPage(props) {
 							enim ad minim veniam
 						</Text>
 					</Column>
-					<Column
-						style={{
-							width: "45vw",
-							border: "0.3rem solid #1e114a",
-							padding: "2rem",
-							display: "flex",
-							flexDirection: "row",
-							flexWrap: "wrap",
-						}}
-					>
+					<PerksColumn>
 						<Content>
 							<BigText>Amazing Theatres</BigText>
 							<Text style={{ fontWeight: "normal" }}>
@@ -73,54 +64,33 @@ export default function AboutPage(props) {
 								eiusmod tempor.
 							</Text>
 						</Content>
-					</Column>
+					</PerksColumn>
 				</PerksContainer>
 				<StoryContainer>
 					<RedTag>Our Story</RedTag>
-					<Text
-						style={{
-							width: "50vw",
-							textAlign: "center",
-							fontSize: "1rem",
-							lineHeight: "25px",
-						}}
-					>
+					<StoryText>
 						Sed ut perspiciatis unde omnis iste natus error sit voluptatem
 						accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
 						quae ab illo inventore veritatis et quasi architecto beatae vitae
 						dicta sunt explicabo.
-					</Text>
-					<Text
-						style={{
-							width: "50vw",
-							textAlign: "center",
-							fontSize: "1rem",
-							lineHeight: "25px",
-						}}
-					>
+					</StoryText>
+					<StoryText>
 						Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
 						fugit, sed quia consequuntur magni dolores eos qui ratione
 						voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
 						ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
 						numquam eius modi tempora incidunt ut labore et dolore magnam
 						aliquam quaerat voluptatem.
-					</Text>
-					<Text
-						style={{
-							width: "50vw",
-							textAlign: "center",
-							fontSize: "1rem",
-							lineHeight: "25px",
-						}}
-					>
+					</StoryText>
+					<StoryText>
 						Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
 						suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
 						autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
 						nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
 						voluptas nulla pariatur?
-					</Text>
+					</StoryText>
 				</StoryContainer>
-				<WhyChoseUsContainer>
+				<WhyChooseUsContainer>
 					<RedTag>Happy viewers</RedTag>
 					<Type>
 						Why <BoldType> Choose us</BoldType>
@@ -150,9 +120,9 @@ export default function AboutPage(props) {
 							</Text>
 						</Reasons>
 					</ReasonsContainer>
-				</WhyChoseUsContainer>
-				<Footer />
+				</WhyChooseUsContainer>
 			</SubContainer>
+			<Footer />
 		</Container>
 	);
 }
@@ -164,6 +134,18 @@ const Container = styled.div`
 	height: 100%;
 `;
 
+const Text = styled.p`
+	color: #fff;
+	margin: 5px 0;
+	font-size: 0.8rem;
+	font-weight: lighter;
+	line-height: 20px;
+	letter-spacing: 1px;
+	@media (max-width: 480px) {
+		font-size: 0.7rem;
+	}
+`;
+
 const StoryContainer = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -172,7 +154,18 @@ const StoryContainer = styled.div`
 	margin-bottom: 6rem;
 `;
 
-const WhyChoseUsContainer = styled.div`
+const StoryText = styled(Text)`
+	width: 50vw;
+	text-align: center;
+	font-size: 1rem;
+	line-height: 25px;
+	@media (max-width: 855px) {
+		width: 70vw;
+		font-size: 0.8rem;
+	}
+`;
+
+const WhyChooseUsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -182,6 +175,9 @@ const ReasonsContainer = styled.div`
 	display: flex;
 	justify-content: space-around;
 	margin-top: 4rem;
+	@media (max-width: 855px) {
+		display: block;
+	}
 `;
 
 const Image = styled.img`
@@ -196,6 +192,14 @@ const Reasons = styled.div`
 	padding: 6rem 2rem;
 	padding-bottom: 3rem;
 	width: 20%;
+	@media (max-width: 855px) {
+		padding: 3rem 2rem;
+		width: 70%;
+	}
+	@media (max-width: 585px) {
+		padding: 2rem;
+		margin: 1rem 0.5rem;
+	}
 `;
 
 const Background = styled.div`
@@ -204,9 +208,55 @@ const Background = styled.div`
 	background-size: cover;
 	background-position: 50%;
 	padding: 8rem;
+	@media (max-width: 585px) {
+		padding: 4rem;
+	}
 `;
 
-const Column = styled.div``;
+const PerksContainer = styled.div`
+	display: grid;
+	justify-content: space-evenly;
+	grid-template-rows: 100%;
+	grid-template-columns: 30% 50%;
+	margin: 2rem;
+	@media (max-width: 855px) {
+		display: block;
+	}
+`;
+
+const Column = styled.div`
+	width: 25vw;
+	@media (max-width: 855px) {
+		width: 45vw;
+	}
+	@media (max-width: 585px) {
+		width: 60vw;
+	}
+`;
+const PerksColumn = styled(Column)`
+	grid-column: 2;
+	border: 0.3rem solid #1e114a;
+	display: grid;
+	grid-template-rows: 33% 33% 34%;
+	grid-template-columns: 50% 50%;
+	grid-gap: 2%;
+	padding: 5%;
+	@media (max-width: 855px) {
+		display: block;
+		margin-top: 5%;
+	}
+`;
+
+const Content = styled.div`
+	margin: 2%;
+	@media (max-width: 855px) {
+		margin-top: 6%;
+	}
+	@media (max-width: 380px) {
+		margin-top: 10%;
+	}
+`;
+
 const SubContainer = styled.div`
 	margin-left: 8vw;
 	padding-left: 4vw;
@@ -254,12 +304,6 @@ const BoldType = styled.span`
 	}
 `;
 
-const PerksContainer = styled.div`
-	display: flex;
-	justify-content: space-evenly;
-	margin: 2rem;
-`;
-
 const BlueTag = styled(RedTag)`
 	color: #694cc9;
 	width: 100%;
@@ -276,24 +320,7 @@ const BlueTag = styled(RedTag)`
 	}
 `;
 
-const Text = styled.p`
-	color: #fff;
-	margin: 5px 0;
-	font-size: 0.8rem;
-	font-weight: lighter;
-	line-height: 20px;
-	letter-spacing: 1px;
-	@media (max-width: 480px) {
-		font-size: 0.7rem;
-	}
-`;
-
 const BigText = styled(Text)`
 	font-size: 1.4rem;
 	font-weight: bold;
-`;
-
-const Content = styled.div`
-	margin: 0.8rem;
-	width: 20vw;
 `;

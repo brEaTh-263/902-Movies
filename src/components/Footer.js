@@ -90,7 +90,7 @@ const BackgroundPic = styled.div`
 	background-blend-mode: hard-light;
 	filter: opacity(25%);
 	background-position: bottom;
-	transform: translateX(-14vw);
+	/* transform: translateX(-14vw); */
 	z-index: 100;
 	bottom: 0;
 	@media (max-width: 720px) {
