@@ -19,9 +19,6 @@ const useStyles = makeStyles({
 		backgroundColor: "#000",
 	},
 	tab: {
-		"&.MuiBottomNavigationAction-root.Mui-selected": {
-			color: "#3f51b5;",
-		},
 		"&.MuiBottomNavigationAction-root": {
 			color: "#fff",
 		},
@@ -50,19 +47,22 @@ export default function NavLayer(props) {
 				>
 					<BottomNavigationAction
 						label="Movies"
-						value="recents"
+						value="movies"
 						className={classes.tab}
+						style={{ color: value === "movies" ? "#3f51b5" : "#fff" }}
 						icon={<MovieIcon />}
 					/>
 					<BottomNavigationAction
 						label="Contact Us"
 						value="contact-us"
+						style={{ color: value === "contact-us" ? "#3f51b5" : "#fff" }}
 						className={classes.tab}
 						icon={<ContactSupportIcon />}
 					/>
 					<BottomNavigationAction
 						label="About"
 						value="about-us"
+						style={{ color: value === "about-us" ? "#3f51b5" : "#fff" }}
 						className={classes.tab}
 						icon={<PersonIcon />}
 					/>

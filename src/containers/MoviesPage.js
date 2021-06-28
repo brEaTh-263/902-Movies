@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import MovieItem from "../components/MovieItem";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import NavLayer from "../components/NavLayer";
 export default function MoviesPage(props) {
 	const comingSoon = props.location.state;
 	const AllMovies = useSelector((state) => state.Movies);
@@ -16,20 +17,22 @@ export default function MoviesPage(props) {
 		});
 	};
 	return (
-		<Container>
-			<Header />
-			<Background>
-				<RedTag>{comingSoon ? "coming soon" : "now playing"}</RedTag>
-				<Type>
-					<BoldType>{comingSoon ? "Coming" : "Now"}</BoldType>
-					{comingSoon ? " Soon" : " Playing"}
-				</Type>
-			</Background>
-			<SubContainer>
-				<NowShowingContainer>{Moviehandler()}</NowShowingContainer>
-			</SubContainer>
-			<Footer />
-		</Container>
+		<NavLayer>
+			<Container>
+				<Header />
+				<Background>
+					<RedTag>{comingSoon ? "coming soon" : "now playing"}</RedTag>
+					<Type>
+						<BoldType>{comingSoon ? "Coming" : "Now"}</BoldType>
+						{comingSoon ? " Soon" : " Playing"}
+					</Type>
+				</Background>
+				<SubContainer>
+					<NowShowingContainer>{Moviehandler()}</NowShowingContainer>
+				</SubContainer>
+				<Footer />
+			</Container>
+		</NavLayer>
 	);
 }
 
@@ -52,6 +55,9 @@ const Background = styled.div`
 	background-size: cover;
 	background-position: 50%;
 	padding: 8rem;
+	@media (max-width: 585px) {
+		padding: 4rem;
+	}
 `;
 
 const RedTag = styled.p`
@@ -94,20 +100,30 @@ const BoldType = styled.span`
 `;
 
 const NowShowingContainer = styled.div`
-	padding: 1rem;
 	flex-direction: row;
 	flex-wrap: wrap;
+	align-items: center;
 	padding-top: 3rem;
-	padding-left: 1rem;
-	width: 97%;
+	column-count: 3;
+	justify-content: space-evenly;
+	width: 100%;
 	overflow: hidden;
-	@media (max-width: 1080px) {
-		height: 32rem;
+	@media (max-width: 855px) {
+		column-count: 2;
+		margin: auto;
+		width: 85%;
 	}
-	@media (max-width: 720px) {
-		padding-left: 1rem;
+
+	@media (max-width: 585px) {
+		column-count: 2;
+		margin: auto;
+		width: 100%;
 	}
-	@media (max-width: 480px) {
-		height: 32rem;
+	@media (max-width: 380px) {
+		column-count: 1;
+		margin: auto;
+		width: 200px;
+		align-content: center;
+		justify-content: center;
 	}
 `;

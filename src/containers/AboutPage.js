@@ -2,128 +2,131 @@ import React from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import NavLayer from "../components/NavLayer";
 export default function AboutPage(props) {
 	return (
-		<Container>
-			<Header />
-			<Background>
-				<RedTag>our theatre</RedTag>
-				<Type style={{ textTransform: "uppercase" }}>
-					<BoldType>about</BoldType>us
-				</Type>
-			</Background>
-			<SubContainer>
-				<PerksContainer>
-					<Column>
-						<BlueTag>About Us</BlueTag>
-						<Type>
-							All the
-							<BoldType>Perks</BoldType>
-						</Type>
-						<Text>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-							eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-							enim ad minim veniam
-						</Text>
-					</Column>
-					<PerksColumn>
-						<Content>
-							<BigText>Amazing Theatres</BigText>
-							<Text style={{ fontWeight: "normal" }}>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor.
-							</Text>
-						</Content>
-						<Content>
-							<BigText>Comfort Amenities</BigText>
-							<Text style={{ fontWeight: "normal" }}>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor.
-							</Text>
-						</Content>
-						<Content>
-							<BigText>Pre Order Food</BigText>
-							<Text style={{ fontWeight: "normal" }}>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor.
-							</Text>
-						</Content>
-						<Content>
-							<BigText>
-								<BigText>Artisan Snacks</BigText>
-							</BigText>
-							<Text style={{ fontWeight: "normal" }}>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor.
-							</Text>
-						</Content>
-						<Content>
-							<BigText>Movie Go’er Rewards</BigText>
-							<Text style={{ fontWeight: "normal" }}>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor.
-							</Text>
-						</Content>
-					</PerksColumn>
-				</PerksContainer>
-				<StoryContainer>
-					<RedTag>Our Story</RedTag>
-					<StoryText>
-						Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-						accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-						quae ab illo inventore veritatis et quasi architecto beatae vitae
-						dicta sunt explicabo.
-					</StoryText>
-					<StoryText>
-						Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
-						fugit, sed quia consequuntur magni dolores eos qui ratione
-						voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
-						ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
-						numquam eius modi tempora incidunt ut labore et dolore magnam
-						aliquam quaerat voluptatem.
-					</StoryText>
-					<StoryText>
-						Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-						suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-						autem vel eum iure reprehenderit qui in ea voluptate velit esse quam
-						nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-						voluptas nulla pariatur?
-					</StoryText>
-				</StoryContainer>
-				<WhyChooseUsContainer>
-					<RedTag>Happy viewers</RedTag>
-					<Type>
-						Why <BoldType> Choose us</BoldType>
+		<NavLayer>
+			<Container>
+				<Header />
+				<Background>
+					<RedTag>our theatre</RedTag>
+					<Type style={{ textTransform: "uppercase" }}>
+						<BoldType>about</BoldType>us
 					</Type>
-					<ReasonsContainer>
-						<Reasons style={{ borderColor: "#1a1a1a" }}>
-							<Image src="https://www.elegantthemes.com/layouts/wp-content/uploads/2018/07/quote-light.png"></Image>
-							<Text style={{ fontWeight: "normal" }}>
+				</Background>
+				<SubContainer>
+					<PerksContainer>
+						<Column>
+							<BlueTag>About Us</BlueTag>
+							<Type>
+								All the
+								<BoldType>Perks</BoldType>
+							</Type>
+							<Text>
 								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor.
+								eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+								enim ad minim veniam
 							</Text>
-						</Reasons>
-						<Reasons style={{ borderColor: "#694cc9" }}>
-							<Image src="https://www.elegantthemes.com/layouts/wp-content/uploads/2018/07/quote-light.png"></Image>
+						</Column>
+						<PerksColumn>
+							<Content>
+								<BigText>Amazing Theatres</BigText>
+								<Text style={{ fontWeight: "normal" }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor.
+								</Text>
+							</Content>
+							<Content>
+								<BigText>Comfort Amenities</BigText>
+								<Text style={{ fontWeight: "normal" }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor.
+								</Text>
+							</Content>
+							<Content>
+								<BigText>Pre Order Food</BigText>
+								<Text style={{ fontWeight: "normal" }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor.
+								</Text>
+							</Content>
+							<Content>
+								<BigText>
+									<BigText>Artisan Snacks</BigText>
+								</BigText>
+								<Text style={{ fontWeight: "normal" }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor.
+								</Text>
+							</Content>
+							<Content>
+								<BigText>Movie Go’er Rewards</BigText>
+								<Text style={{ fontWeight: "normal" }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor.
+								</Text>
+							</Content>
+						</PerksColumn>
+					</PerksContainer>
+					<StoryContainer>
+						<RedTag>Our Story</RedTag>
+						<StoryText>
+							Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+							accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+							quae ab illo inventore veritatis et quasi architecto beatae vitae
+							dicta sunt explicabo.
+						</StoryText>
+						<StoryText>
+							Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+							aut fugit, sed quia consequuntur magni dolores eos qui ratione
+							voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
+							ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
+							non numquam eius modi tempora incidunt ut labore et dolore magnam
+							aliquam quaerat voluptatem.
+						</StoryText>
+						<StoryText>
+							Ut enim ad minima veniam, quis nostrum exercitationem ullam
+							corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+							consequatur? Quis autem vel eum iure reprehenderit qui in ea
+							voluptate velit esse quam nihil molestiae consequatur, vel illum
+							qui dolorem eum fugiat quo voluptas nulla pariatur?
+						</StoryText>
+					</StoryContainer>
+					<WhyChooseUsContainer>
+						<RedTag>Happy viewers</RedTag>
+						<Type>
+							Why <BoldType> Choose us</BoldType>
+						</Type>
+						<ReasonsContainer>
+							<Reasons style={{ borderColor: "#1a1a1a" }}>
+								<Image src="https://www.elegantthemes.com/layouts/wp-content/uploads/2018/07/quote-light.png"></Image>
+								<Text style={{ fontWeight: "normal" }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor.
+								</Text>
+							</Reasons>
+							<Reasons style={{ borderColor: "#694cc9" }}>
+								<Image src="https://www.elegantthemes.com/layouts/wp-content/uploads/2018/07/quote-light.png"></Image>
 
-							<Text style={{ fontWeight: "normal" }}>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor.
-							</Text>
-						</Reasons>
-						<Reasons style={{ borderColor: "#4c090f" }}>
-							<Image src="https://www.elegantthemes.com/layouts/wp-content/uploads/2018/07/quote-light.png"></Image>
+								<Text style={{ fontWeight: "normal" }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor.
+								</Text>
+							</Reasons>
+							<Reasons style={{ borderColor: "#4c090f" }}>
+								<Image src="https://www.elegantthemes.com/layouts/wp-content/uploads/2018/07/quote-light.png"></Image>
 
-							<Text style={{ fontWeight: "normal" }}>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor.
-							</Text>
-						</Reasons>
-					</ReasonsContainer>
-				</WhyChooseUsContainer>
-			</SubContainer>
-			<Footer />
-		</Container>
+								<Text style={{ fontWeight: "normal" }}>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+									do eiusmod tempor.
+								</Text>
+							</Reasons>
+						</ReasonsContainer>
+					</WhyChooseUsContainer>
+				</SubContainer>
+				<Footer />
+			</Container>
+		</NavLayer>
 	);
 }
 
