@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import { Button, makeStyles } from "@material-ui/core";
 import MailIcon from "@material-ui/icons/Mail";
 import NavLayer from "../components/NavLayer";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 
 const useStyles = makeStyles((theme) => ({
 	blueButton: {
@@ -14,12 +16,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function ContactUsPage() {
 	const classes = useStyles();
+	const { inView, ref } = useInView();
+	const controls = useAnimation();
+	const variants = {
+		hidden: {
+			opacity: 0,
+			y: 30,
+		},
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				duration: 1,
+			},
+		},
+	};
+
+	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		} else {
+			controls.start("hidden");
+		}
+	}, [controls, inView]);
+
 	return (
 		<NavLayer>
 			<Container>
 				<Header />
 				<Image />
-				<SubContainer>
+				<SubContainer
+					initial="hidden"
+					ref={ref}
+					animate={controls}
+					variants={variants}
+				>
 					<RedTag>Contact Us</RedTag>
 					<Type>
 						Contact <BoldType>Us</BoldType>
@@ -72,7 +103,7 @@ const Container = styled.div`
 	}
 `;
 
-const SubContainer = styled.div`
+const SubContainer = styled(motion.div)`
 	margin-left: 10vw;
 	padding: 30px;
 	@media (max-width: 855px) {
