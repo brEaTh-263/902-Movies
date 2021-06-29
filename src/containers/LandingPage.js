@@ -12,7 +12,7 @@ import {
 	List,
 } from "@material-ui/core";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as movieActions from "../store/action/Movies";
 import SearchIcon from "@material-ui/icons/Search";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -48,6 +48,7 @@ export default function LandingPage(props) {
 	const [queryResults, setQueryResults] = useState([]);
 	const [searchMovie, setSearchMovie] = useState("");
 	const [showQuery, setShowQuery] = useState(false);
+	const movies = useSelector((state) => state.Movies.upcomingMovies);
 
 	useEffect(() => {
 		const getMovieDetails = async () => {
@@ -61,8 +62,10 @@ export default function LandingPage(props) {
 				alert("Something went wrong,please try again!");
 			}
 		};
-		getMovieDetails();
-	}, [dispatch]);
+		if (movies.length === 0) {
+			getMovieDetails();
+		}
+	}, [dispatch, movies]);
 
 	useEffect(() => {
 		const findMovieOnWeb = async () => {
@@ -87,7 +90,7 @@ export default function LandingPage(props) {
 					key={q.id}
 					button
 					onClick={() => {
-						props.history.push(`/movies/${q.id}`);
+						props.history.push(`movie/${q.id}`);
 					}}
 				>
 					<ListItemAvatar>

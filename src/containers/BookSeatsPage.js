@@ -196,10 +196,6 @@ export default function BookSeatsPage({ setIsBookingSeats }) {
 										duration: 0.5,
 									},
 								});
-								if (showSeats) {
-									setShowSeats(false);
-									return;
-								}
 
 								setIsBookingSeats(false);
 							}}
