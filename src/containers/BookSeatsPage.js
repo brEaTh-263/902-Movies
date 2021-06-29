@@ -4,7 +4,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { IconButton, Button, useMediaQuery } from "@material-ui/core";
 import TheatreScreen from "../components/TheatreScreen";
 import Seats from "../components/Seats";
-import { motion, useCycle } from "framer-motion";
+import { motion, useCycle, useAnimation } from "framer-motion";
 import Time from "../components/Bookings/Time";
 import Format from "../components/Bookings/Format";
 import Date from "../components/Bookings/Date";
@@ -20,9 +20,11 @@ export default function BookSeatsPage({ setIsBookingSeats }) {
 	const matches480 = useMediaQuery("(max-width:480px)");
 	const matches380 = useMediaQuery("(max-width:380px)");
 	const [isOpen, toggleOpen] = useCycle(true, false);
+
 	const [showSeats, setShowSeats] = useState(false);
 	const constraintsRef = useRef(null);
-
+	const checkoutControls = useAnimation();
+	const checkOutLineControls = useAnimation();
 	let date = new Date();
 	date = moment(date).toDate().getDate();
 
@@ -171,12 +173,66 @@ export default function BookSeatsPage({ setIsBookingSeats }) {
 								<BigPopUpTitles>{selectedSeats.join(", ")}</BigPopUpTitles>
 							</Column>
 						</Row>
-						<StyledButton variant="contained">
+						<StyledButton
+							variant="contained"
+							onClick={async () => {
+								await checkoutControls.start({
+									top: 0,
+									display: "block",
+									transition: {
+										duration: 0.5,
+									},
+								});
+								await checkOutLineControls.start({
+									height: "30vh",
+									transform: "translateY(-30vh)",
+									transition: {
+										duration: 0.5,
+									},
+								});
+								await checkOutLineControls.start({
+									height: "0vh",
+									transition: {
+										duration: 0.5,
+									},
+								});
+								if (showSeats) {
+									setShowSeats(false);
+									return;
+								}
+
+								setIsBookingSeats(false);
+							}}
+						>
 							Checkout({selectedSeats.length * 120})
 						</StyledButton>
 					</Row>
 				</PopUp>
 			)}
+			<Container
+				animate={checkoutControls}
+				style={{
+					height: "100vh",
+				}}
+				initial={{
+					position: "fixed",
+					top: "100vh",
+					background: "#7c7878",
+					display: "none",
+				}}
+			>
+				<motion.div
+					inital={{ height: "0vh" }}
+					animate={checkOutLineControls}
+					style={{
+						position: "absolute",
+						top: "59vh",
+						left: "49.5vw",
+						width: "0.1vw",
+						backgroundColor: "#fff",
+					}}
+				></motion.div>
+			</Container>
 		</Container>
 	);
 }

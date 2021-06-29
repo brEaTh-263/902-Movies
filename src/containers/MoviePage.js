@@ -128,7 +128,9 @@ export default function HomePage(props) {
 			</motion.div>
 
 			{isBookingSeats && (
-				<BookSeatsPage setIsBookingSeats={setIsBookingSeats} />
+				<>
+					<BookSeatsPage setIsBookingSeats={setIsBookingSeats} />
+				</>
 			)}
 			{!isBookingSeats && (
 				<>
