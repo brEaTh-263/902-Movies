@@ -21,6 +21,7 @@
 	],
 	"start_url": "/",
 	"scope": "/",
+	"prefer_related_applications": "false",
 	"display": "fullscreen",
 	"theme_color": "#be0403",
 	"background_color": "#000"
