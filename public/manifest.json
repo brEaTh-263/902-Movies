@@ -1,6 +1,7 @@
 {
 	"short_name": "Movies",
 	"name": "Movies",
+	"description": "A progressive web app where users can browse and book movie tickets.",
 	"icons": [
 		{
 			"src": "favicon.ico",
@@ -21,6 +22,6 @@
 	"start_url": "/",
 	"scope": "/",
 	"display": "fullscreen",
-	"theme_color": "#000000",
-	"background_color": "#ffffff"
+	"theme_color": "#be0403",
+	"background_color": "#000"
 }
