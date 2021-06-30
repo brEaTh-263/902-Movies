@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import MovieItem from "../components/MovieItem";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import NavLayer from "../components/NavLayer";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 export default function MoviesPage(props) {
 	const comingSoon = props.location.state;
 	const AllMovies = useSelector((state) => state.Movies);
@@ -16,6 +18,28 @@ export default function MoviesPage(props) {
 			return <MovieItem key={movie.id} movie={movie} show={false} />;
 		});
 	};
+	const { inView, ref } = useInView();
+	const controls = useAnimation();
+	const variants = {
+		hidden: {
+			opacity: 0,
+			y: 30,
+		},
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: {
+				duration: 1,
+			},
+		},
+	};
+	useEffect(() => {
+		if (inView) {
+			controls.start("visible");
+		} else {
+			controls.start("hidden");
+		}
+	}, [controls, inView]);
 	return (
 		<NavLayer>
 			<Container>
@@ -27,8 +51,13 @@ export default function MoviesPage(props) {
 						{comingSoon ? " Soon" : " Playing"}
 					</Type>
 				</Background>
-				<SubContainer>
-					<NowShowingContainer>{Moviehandler()}</NowShowingContainer>
+				<SubContainer
+					initial="hidden"
+					ref={ref}
+					animate={controls}
+					variants={variants}
+				>
+					<MoviesContainer>{Moviehandler()}</MoviesContainer>
 				</SubContainer>
 				<Footer />
 			</Container>
@@ -41,7 +70,7 @@ const Container = styled.div`
 	flex: 1;
 `;
 
-const SubContainer = styled.div`
+const SubContainer = styled(motion.div)`
 	margin-left: 8vw;
 	padding-left: 4vw;
 	@media (max-width: 720px) {
@@ -99,7 +128,7 @@ const BoldType = styled.span`
 	}
 `;
 
-const NowShowingContainer = styled.div`
+const MoviesContainer = styled.div`
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: center;

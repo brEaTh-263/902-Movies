@@ -150,6 +150,7 @@ export default function HomePage(props) {
 						>
 							GET TICKETS
 						</StyledButton>
+
 						<TrailerButton onClick={() => getVideo()}>
 							<ThirdLayer>
 								<SecondLayer>
@@ -169,6 +170,7 @@ export default function HomePage(props) {
 }
 
 const Container = styled.div`
+	background-color: #888;
 	width: 100vw;
 	height: 100vh;
 	background-size: cover;

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
 	BottomNavigation,
 	BottomNavigationAction,
 	makeStyles,
 	useMediaQuery,
 } from "@material-ui/core";
-import PersonIcon from "@material-ui/icons/Person";
+import { withRouter } from "react-router";
+import PhoneIcon from "@material-ui/icons/Phone";
 import MovieIcon from "@material-ui/icons/Movie";
-import ContactSupportIcon from "@material-ui/icons/ContactSupport";
 import { useHistory } from "react-router";
+import InfoIcon from "@material-ui/icons/Info";
+import HomeIcon from "@material-ui/icons/Home";
 
 const useStyles = makeStyles({
 	root: {
@@ -22,18 +24,29 @@ const useStyles = makeStyles({
 		"&.MuiBottomNavigationAction-root": {
 			color: "#fff",
 		},
+		"&.MuiBottomNavigationAction-root.Mui-selected": {
+			color: "#3f51b5",
+		},
 	},
 });
 
-export default function NavLayer(props) {
+function NavLayer(props) {
 	const classes = useStyles();
 	const history = useHistory();
-	const [value, setValue] = React.useState("recents");
+	const [navs] = useState(["/", "/movies", "/contact-us", "/about-us"]);
+	const [value, setValue] = React.useState("/");
 	const handleChange = (event, newValue) => {
-		setValue(newValue);
-		history.push(newValue);
+		history.push(navs[newValue]);
 	};
 	const matches = useMediaQuery("(max-width:720px)");
+
+	useEffect(() => {
+		const { pathname } = props.location;
+		const value = navs.indexOf(pathname);
+		if (value > -1) {
+			setValue(value);
+		}
+	}, [props.location, navs]);
 
 	return (
 		<>
@@ -46,28 +59,33 @@ export default function NavLayer(props) {
 					showLabels
 				>
 					<BottomNavigationAction
-						label="Movies"
-						value="movies"
+						label="Home"
+						value={0}
 						className={classes.tab}
-						style={{ color: value === "movies" ? "#3f51b5" : "#fff" }}
+						icon={<HomeIcon />}
+					/>
+					<BottomNavigationAction
+						label="Movies"
+						value={1}
+						className={classes.tab}
 						icon={<MovieIcon />}
 					/>
 					<BottomNavigationAction
 						label="Contact Us"
-						value="contact-us"
-						style={{ color: value === "contact-us" ? "#3f51b5" : "#fff" }}
+						value={2}
 						className={classes.tab}
-						icon={<ContactSupportIcon />}
+						icon={<PhoneIcon />}
 					/>
 					<BottomNavigationAction
 						label="About"
-						value="about-us"
-						style={{ color: value === "about-us" ? "#3f51b5" : "#fff" }}
+						value={3}
 						className={classes.tab}
-						icon={<PersonIcon />}
+						icon={<InfoIcon />}
 					/>
 				</BottomNavigation>
 			)}
 		</>
 	);
 }
+
+export default withRouter(NavLayer);
