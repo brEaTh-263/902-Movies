@@ -4,10 +4,12 @@ import LandingPage from "../containers/LandingPage";
 import AboutPage from "../containers/AboutPage";
 import ContactUsPage from "../containers/ContactUsPage";
 import MoviesPage from "../containers/MoviesPage";
+import AuthPage from "../containers/AuthPage";
 
 const Routes = () => {
 	return (
 		<Switch>
+			<Route exact path="/auth" component={AuthPage} />
 			<Route exact path="/" component={LandingPage} />
 			<Route exact path="/movies" component={MoviesPage} />
 			<Route exact path="/movie/:id" component={MoviePage} />
