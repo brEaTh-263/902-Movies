@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MovieIcon from "@material-ui/icons/Movie";
 import ContactSupportIcon from "@material-ui/icons/ContactSupport";
+import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 import { Link } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
 import InfoIcon from "@material-ui/icons/Info";
@@ -15,6 +16,11 @@ export default function Header() {
 				</NavLink>
 			</LogoContainer>
 			<NavBarContainer>
+				<Tooltip title="Log out">
+					<NavLink to="#">
+						<MeetingRoomIcon style={{ fontSize: 30 }} />
+					</NavLink>
+				</Tooltip>
 				<Tooltip title="Movies">
 					<NavLink to="/movies">
 						<MovieIcon style={{ fontSize: 30 }} />{" "}
@@ -54,7 +60,6 @@ const Container = styled.div`
 
 const LogoContainer = styled.div`
 	display: inline;
-	margin-bottom: 60vh;
 `;
 
 const Logo = styled.span`
@@ -64,6 +69,8 @@ const Logo = styled.span`
 `;
 
 const NavBarContainer = styled.div`
+	position: absolute;
+	bottom: 0;
 	display: flex;
 	width: 50px;
 	justify-self: center;

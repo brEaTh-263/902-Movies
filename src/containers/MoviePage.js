@@ -34,6 +34,7 @@ export default function HomePage(props) {
 				`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${tmdbApiKey.key}&language=en-US`
 			);
 			const castJson = await response.json();
+			console.log(castJson);
 			const { cast, crew } = castJson;
 			response = await fetch(
 				`https://api.themoviedb.org/3/movie/${id}/images?api_key=${tmdbApiKey.key}`
@@ -120,7 +121,7 @@ export default function HomePage(props) {
 		<Container
 			style={{
 				position: isBookingSeats ? "fixed" : "initial",
-				backgroundImage: `url(https://image.tmdb.org/t/p/original${movie?.backdrops[0].file_path})`,
+				backgroundImage: `url(https://image.tmdb.org/t/p/original${movie?.backdrops[0]?.file_path})`,
 			}}
 		>
 			<motion.div style={{ opacity: 1 }} animate={headerControls}>

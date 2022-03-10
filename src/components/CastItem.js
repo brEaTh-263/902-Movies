@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 export default function CastItem({ cast }) {
+	const history = useHistory();
 	return (
-		<CastContainer>
+		<CastContainer onClick={() => history.push(`/cast/${cast.id}`)}>
 			<CastImage
 				src={
 					cast.profile_path
@@ -22,6 +24,9 @@ const CastContainer = styled.div`
 	width: 10rem;
 	height: 24vh;
 	box-sizing: border-box;
+	&:hover {
+		cursor: pointer;
+	}
 	@media (max-width: 855px) {
 		width: 9rem;
 		height: 22vh;
