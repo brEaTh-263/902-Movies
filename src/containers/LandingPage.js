@@ -58,6 +58,7 @@ export default function LandingPage(props) {
 				await dispatch(movieActions.getNowShowing());
 				setIsLoading(false);
 			} catch (error) {
+				console.log(error);
 				setIsLoading(false);
 				alert("Something went wrong,please try again!");
 			}

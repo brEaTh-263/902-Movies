@@ -12,6 +12,7 @@ export const getNowShowing = () => {
 			console.log(responseJson);
 			dispatch({ type: NOW_SHOWING, payload: responseJson.results });
 		} catch (error) {
+			console.log(error);
 			throw new Error();
 		}
 	};
@@ -27,6 +28,7 @@ export const getUpcoming = () => {
 			console.log(responseJson);
 			dispatch({ type: UPCOMING, payload: responseJson.results });
 		} catch (error) {
+			console.log(error);
 			throw new Error();
 		}
 	};

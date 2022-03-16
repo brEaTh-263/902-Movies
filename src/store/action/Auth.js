@@ -5,22 +5,30 @@ export const SIGN_OUT = "SIGN_OUT";
 export const signIn = () => {
 	return async (dispatch) => {
 		const user = firebase.auth().currentUser;
+		console.log(user);
+
 		let uid = user.uid;
 		let displayPicture = user.photoURL;
 		let username = user.displayName;
 		let email = user.email;
-		if (user.providerData[0].providerId === "password") {
-			const doc = await db.collection("users").doc(uid).get();
-			console.log(doc.data());
-			username = doc.data().username;
+		const doc = await db.collection("users").doc(uid).get();
+		console.log(doc.data());
+		if (!doc.exists) {
+			await db.collection("users").doc(uid).set({
+				username: username,
+				email: email,
+				displayPicture: displayPicture,
+			});
 		}
+		// console.log(doc.data());
+
 		dispatch({
 			type: SIGN_IN,
 			payload: {
 				uid,
 				email,
 				displayPicture,
-				username: username,
+				username: "",
 			},
 		});
 	};

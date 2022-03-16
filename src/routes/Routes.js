@@ -6,12 +6,14 @@ import ContactUsPage from "../containers/ContactUsPage";
 import MoviesPage from "../containers/MoviesPage";
 import AuthPage from "../containers/AuthPage";
 import ActorPage from "../containers/ActorPage";
+import InitialPage from "../containers/InitialPage";
 
 const Routes = () => {
 	return (
 		<Switch>
+			<Route exact path="/" component={InitialPage} />
 			<Route exact path="/auth" component={AuthPage} />
-			<Route exact path="/" component={LandingPage} />
+			<Route exact path="/home" component={LandingPage} />
 			<Route exact path="/movies" component={MoviesPage} />
 			<Route exact path="/movie/:id" component={MoviePage} />
 			<Route exact path="/cast/:id" component={ActorPage} />

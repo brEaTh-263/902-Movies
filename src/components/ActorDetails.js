@@ -3,19 +3,20 @@ import styled from "styled-components";
 
 export default function ActorDetails({ details }) {
 	const getMovies = () => {
-		return details.knownFor.map((m) => {
-			// eslint-disable-next-line jsx-a11y/anchor-is-valid
-			return <a href="#">{m.fullTitle}</a>;
-		});
+		if (details?.knownFor)
+			return details?.knownFor.map((m) => {
+				// eslint-disable-next-line jsx-a11y/anchor-is-valid
+				return <a href="#">{m.fullTitle}</a>;
+			});
 	};
 	return (
 		<Container>
 			<Title>Place of birth</Title>
-			<Text>{details.place_of_birth}</Text>
+			<Text>{details?.place_of_birth}</Text>
 			<Title>Awards</Title>
-			<Text>{details.awards}</Text>
+			<Text>{details?.awards}</Text>
 			<Title>Biography</Title>
-			<Text>{details.biography}</Text>
+			<Text>{details?.biography}</Text>
 			<Title>Known for</Title>
 			{getMovies()}
 		</Container>

@@ -6,8 +6,11 @@ import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 import { Link } from "react-router-dom";
 import Tooltip from "@material-ui/core/Tooltip";
 import InfoIcon from "@material-ui/icons/Info";
-
+import { useSelector, useDispatch } from "react-redux";
+import * as authActions from "../store/action/Auth";
 export default function Header() {
+	const dispatch = useDispatch();
+	const isAuth = useSelector((state) => state.Auth.isAuth);
 	return (
 		<Container>
 			<LogoContainer>
@@ -16,11 +19,13 @@ export default function Header() {
 				</NavLink>
 			</LogoContainer>
 			<NavBarContainer>
-				<Tooltip title="Log out">
-					<NavLink to="#">
-						<MeetingRoomIcon style={{ fontSize: 30 }} />
-					</NavLink>
-				</Tooltip>
+				{isAuth && (
+					<Tooltip title="Log out">
+						<NavLink onClick={() => dispatch(authActions.signOut())}>
+							<MeetingRoomIcon style={{ fontSize: 30 }} />
+						</NavLink>
+					</Tooltip>
+				)}
 				<Tooltip title="Movies">
 					<NavLink to="/movies">
 						<MovieIcon style={{ fontSize: 30 }} />{" "}

@@ -9,6 +9,7 @@ export default function NowShowing() {
 	const { inView, ref } = useInView();
 	const controls = useAnimation();
 	const movies = useSelector((state) => state.Movies);
+	console.log(movies);
 	const { nowShowingMovies } = movies;
 	const variants = {
 		hidden: {

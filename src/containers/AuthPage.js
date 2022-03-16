@@ -51,7 +51,7 @@ export default function AuthPage(props) {
 						setEmailVerified(true);
 					} else {
 						await dispatch(authActions.signIn());
-						props.history.push("home");
+						props.history.push("/home");
 					}
 
 					// console.log(result);
@@ -105,14 +105,14 @@ export default function AuthPage(props) {
 		}
 		console.log(username);
 		setIsLoading(true);
-		dispatch(authActions.signInWithEmail(username));
+		await dispatch(authActions.signInWithEmail(username));
 		setIsLoading(false);
-		props.history.push("home");
+		props.history.push("/home");
 	};
 
 	const signIn = async () => {
 		const actionCodeSettings = {
-			url: "http://localhost:3000/sign-in",
+			url: "https://movies-1534a.web.app/auth",
 			handleCodeInApp: true,
 		};
 		try {
@@ -300,7 +300,7 @@ export default function AuthPage(props) {
 						alert("Kindly provide a username");
 						return;
 					}
-					props.history.push("/");
+					props.history.push("/home");
 				}}
 				style={{ display: "inline", position: "absolute", right: 0, top: 0 }}
 			>
