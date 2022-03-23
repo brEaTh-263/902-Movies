@@ -73,19 +73,19 @@ export default function MovieDetails({ movie }) {
 					<Designation>Gallery</Designation>
 					<Images>
 						<Image
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[2].file_path}`}
+							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[2]?.file_path}`}
 						/>
 						<Image
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[2].file_path}`}
+							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[2]?.file_path}`}
 						/>
 						<Image
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[4].file_path}`}
+							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[4]?.file_path}`}
 						/>
 						<Image
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[5].file_path}`}
+							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[5]?.file_path}`}
 						/>
 						<Image
-							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[6].file_path}`}
+							src={`https://image.tmdb.org/t/p/original${movie?.backdrops[6]?.file_path}`}
 						/>
 					</Images>
 				</Column>

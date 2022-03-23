@@ -39,9 +39,7 @@ export default function Footer() {
 				</Column>
 				<Column>
 					<GreyTag>Info</GreyTag>
-					<Text style={{ fontWeight: "normal" }}>
-						chhapariakeshav@gmail.com
-					</Text>
+					<Text style={{ fontWeight: "normal" }}>movies@gmail.com</Text>
 					<Text style={{ fontWeight: "normal" }}>(+91)9794499644</Text>
 				</Column>
 			</FooterContainer>

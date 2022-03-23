@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import { Button, makeStyles } from "@material-ui/core";
@@ -6,7 +6,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import NavLayer from "../components/NavLayer";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
-
+import { useDispatch } from "react-redux";
+import * as authActions from "../store/action/Auth";
 const useStyles = makeStyles((theme) => ({
 	blueButton: {
 		marginTop: 10,
@@ -15,7 +16,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 export default function ContactUsPage() {
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [message, setMessage] = useState("");
+	const [isLoading, setIsLoading] = useState("");
 	const classes = useStyles();
+	const dispatch = useDispatch();
 	const { inView, ref } = useInView();
 	const controls = useAnimation();
 	const variants = {
@@ -30,6 +36,25 @@ export default function ContactUsPage() {
 				duration: 1,
 			},
 		},
+	};
+
+	const submitHandler = async () => {
+		try {
+			if (!name) return alert("Name is required");
+			if (!email) return alert("Email is required");
+			var emailExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+			if (!email.match(emailExp)) return alert("Invalid Email");
+			if (!message) return alert("Message is required");
+			setIsLoading(true);
+			await dispatch(authActions.submitFeedback({ name, email, message }));
+			setIsLoading(false);
+			setName("");
+			setEmail("");
+			setMessage("");
+			alert("Feedback submitted successfully");
+		} catch (error) {
+			setIsLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -66,18 +91,35 @@ export default function ContactUsPage() {
 						</Content>
 						<Content>
 							<BlueTag>Email</BlueTag>
-							<WhiteTag>hello@movies.com</WhiteTag>
+							<WhiteTag>movies@gmail.com</WhiteTag>
 						</Content>
 						<Content />
 						<SenderForm>
-							<Input type="text" placeholder="Name"></Input>
-							<Input type="text" placeholder="Email"></Input>
-							<MessageInput type="text" placeholder="Message"></MessageInput>
+							<Input
+								value={name}
+								onChange={(e) => setName(e.target.value)}
+								type="text"
+								placeholder="Name"
+							></Input>
+							<Input
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								type="text"
+								placeholder="Email"
+							></Input>
+							<MessageInput
+								value={message}
+								onChange={(e) => setMessage(e.target.value)}
+								type="text"
+								placeholder="Message"
+							></MessageInput>
 							<StyledButton
+								disabled={isLoading}
 								startIcon={<MailIcon />}
 								className={classes.blueButton}
+								onClick={submitHandler}
 							>
-								Submit
+								{isLoading ? "Loading..." : "Submit"}
 							</StyledButton>
 						</SenderForm>
 					</Form>

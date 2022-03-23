@@ -113,6 +113,7 @@ export default function AuthPage(props) {
 	const signIn = async () => {
 		const actionCodeSettings = {
 			url: "https://movies-1534a.web.app/auth",
+			// url: "http://localhost:3000/auth",
 			handleCodeInApp: true,
 		};
 		try {

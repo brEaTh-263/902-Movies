@@ -2,6 +2,17 @@ import db, { firebase } from "../../firebase/firebase";
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
 
+export const submitFeedback = (feedback) => {
+	return async (dispatch) => {
+		try {
+			await db.collection("feedback").add(feedback);
+		} catch (error) {
+			console.log(error);
+			throw new Error();
+		}
+	};
+};
+
 export const signIn = () => {
 	return async (dispatch) => {
 		const user = firebase.auth().currentUser;
